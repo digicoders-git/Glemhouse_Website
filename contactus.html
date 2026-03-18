@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | GLEM HOUSE - Connect With Us</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Specific Contact Page Styles */
+        .contact-hero {
+            height: clamp(300px, 40vh, 450px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(45, 62, 51, 0.8), rgba(45, 62, 51, 0.8)),
+                url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .contact-hero-content {
+            z-index: 10;
+            max-width: 800px;
+            padding: 0 5%;
+        }
+
+        .contact-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .contact-hero span {
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .contact-section {
+            padding: 80px 5%;
+            background: var(--bg-light);
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .contact-info-card {
+            background: white;
+            padding: 50px 30px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .contact-info-card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-info-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 20px 50px rgba(45, 62, 51, 0.1);
+        }
+
+        .info-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            background: rgba(45, 62, 51, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .contact-info-card:hover .info-icon-wrapper {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .contact-info-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .contact-info-card p {
+            color: rgba(0, 0, 0, 0.6);
+            line-height: 1.6;
+            margin: 2px 0;
+        }
+
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: stretch;
+        }
+
+        .contact-form-wrapper {
+            background: white;
+            padding: 60px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: var(--transition);
+        }
+
+        .contact-form-wrapper.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .contact-form-wrapper h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .contact-form-wrapper p {
+            color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 18px 25px;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            background: #f9f9f9;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(45, 62, 51, 0.05);
+        }
+
+        textarea.form-input {
+            height: 150px;
+            resize: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(45, 62, 51, 0.2);
+        }
+
+        .submit-btn:hover {
+            background: var(--text-dark);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .map-wrapper {
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+            min-height: 500px;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: var(--transition);
+        }
+
+        .map-wrapper.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(0.2);
+        }
+
+        @media (max-width: 991px) {
+            .contact-hero {
+                height: auto !important;
+                min-height: 250px !important;
+                padding-top: 100px !important;
+                padding-bottom: 50px !important;
+            }
+
+            .contact-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form-wrapper {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-left">
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <a href="index.html" class="logo">
+                <img src="imges/glem logo.png" alt="Glem House Logo">
+            </a>
+        </div>
+
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="sevices.html">Services</a></li>
+                <li><a href="contactus.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-right-empty"></div>
+    </header>
+
+    <div class="overlay"></div>
+    <aside class="sidebar">
+        <button class="sidebar-close" title="Close Menu">
+            <i data-lucide="x"></i>
+        </button>
+
+        <nav>
+            <ul class="sidebar-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="sevices.html">Services</a></li>
+                <li><a href="contactus.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main>
+        <section class="contact-hero">
+            <div class="contact-hero-content">
+                <span>Reach Out</span>
+                <h1>Get In Touch</h1>
+                <p>We're here to help and answer any questions you might have about our collections and services.</p>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="contact-container">
+                <div class="contact-info-grid">
+
+                    <div class="contact-info-card reveal-item">
+                        <div class="info-icon-wrapper">
+                            <i data-lucide="phone"></i>
+                        </div>
+                        <h3>Call Us</h3>
+                        <p>05223662432</p>
+                        <p>Monday - Saturday</p>
+                        <p>9:00 AM - 6:00 PM</p>
+                    </div>
+
+
+                    <div class="contact-info-card reveal-item" style="transition-delay: 0.1s">
+                        <div class="info-icon-wrapper">
+                            <i data-lucide="mail"></i>
+                        </div>
+                        <h3>Email Us</h3>
+                        <p>hr@glemhouse.com</p>
+                        <p>support@glimpses.com</p>
+                        <p>24/7 Response Rate</p>
+                    </div>
+
+
+                    <div class="contact-info-card reveal-item" style="transition-delay: 0.2s">
+                        <div class="info-icon-wrapper">
+                            <i data-lucide="map-pin"></i>
+                        </div>
+                        <h3>Visit Us</h3>
+                        <p>House No. 1/093, New A Jiyamau</p>
+                        <p>Hazratganj, Lucknow</p>
+                        <p>Uttar Pradesh – 226001</p>
+                    </div>
+                </div>
+
+                <div class="contact-layout">
+                    <div class="contact-form-wrapper reveal-item">
+                        <h2>Send a Message</h2>
+                        <p>Fill out the form below and our design team will get back to you within 24 hours.</p>
+
+                        <form>
+                            <div class="form-group">
+                                <label>Your Name</label>
+                                <input type="text" class="form-input" placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" class="form-input" placeholder="john@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Subject</label>
+                                <input type="text" class="form-input" placeholder="How can we help?">
+                            </div>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea class="form-input" placeholder="Tell us about your project..."></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+
+                    <div class="map-wrapper reveal-item">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113914.41561639452!2d80.84093736468736!3d26.84550233949071!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd0045c87455%3A0x691d6427b7efe390!2sGlem%20House%20Consumer%20Care%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1773776576476!5m2!1sen!2sin"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-top">
+
+                <div class="footer-col footer-info">
+                    <div class="footer-logo">
+                        <img src="imges/glem logo.png" alt="Glem House Logo">
+                    </div>
+                    <ul class="contact-list">
+                        <li>
+                            <i data-lucide="map-pin"></i>
+                            <span>Lucknow, Uttar Pradesh</span>
+                        </li>
+                        <li>
+                            <i data-lucide="phone"></i>
+                            <span>05223662432 </span>
+                        </li>
+                        <li>
+                            <i data-lucide="mail"></i>
+                            <span>hr@glemhouse.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="footer-col">
+                    <h3 class="footer-title">About us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Our story</a></li>
+                        <li><a href="#">Our team</a></li>
+                        <li><a href="#">Designers</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="footer-col">
+                    <h3 class="footer-title">Customer service</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#hot">Products</a></li>
+                        <li><a href="contactus.html">Contacts</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="footer-col">
+                    <h3 class="footer-title">Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">FAQ's</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Return</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-middle">
+                <div class="footer-col newsletter-col">
+                    <h3 class="footer-title">Newsletters</h3>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" aria-label="Email address">
+                        <button type="submit">Submit</button>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+                        <a href="#" aria-label="Pinterest"><i data-lucide="target"></i></a>
+                        <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>Copyright © 2024 GLEM HOUSE CONSUMER CARE. All Rights Reserved.</p>
+                </div>
+                <div class="payment-methods">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Visa_2021.svg" alt="Visa">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple Pay">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-item').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>

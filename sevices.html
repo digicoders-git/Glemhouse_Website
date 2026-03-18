@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | GLEM HOUSE - Expert Cleaning Solutions</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Specific Services Page Styles */
+        .services-hero {
+            height: clamp(350px, 50vh, 500px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(45, 62, 51, 0.8), rgba(45, 62, 51, 0.8)),
+                url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .services-hero-content {
+            z-index: 10;
+            max-width: 800px;
+            padding: 0 5%;
+        }
+
+        .services-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .services-hero span {
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .services-grid-section {
+            padding: 100px 5%;
+            background: var(--bg-light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .service-card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-color);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(45, 62, 51, 0.1);
+            border-color: var(--accent-color);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: rgba(45, 62, 51, 0.05);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-icon-wrapper {
+            background: var(--primary-color);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .service-card p {
+            color: rgba(0, 0, 0, 0.6);
+            line-height: 1.7;
+        }
+
+        /* Distribution Map Section */
+        .distribution-section {
+            padding: 100px 5%;
+            background: white;
+            text-align: center;
+        }
+
+        .dist-content {
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .section-tag {
+            color: var(--accent-color);
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        @media (max-width: 991px) {
+            .services-hero {
+                height: auto !important;
+                min-height: 300px !important;
+                padding-top: 100px !important;
+                padding-bottom: 60px !important;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-left">
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <a href="index.html" class="logo">
+                <img src="imges/glem logo.png" alt="Glem House Logo">
+            </a>
+        </div>
+
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="sevices.html" class="active">Services</a></li>
+                <li><a href="contactus.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-right-empty"></div>
+    </header>
+
+    <div class="overlay"></div>
+    <aside class="sidebar">
+        <button class="sidebar-close" title="Close Menu">
+            <i data-lucide="x"></i>
+        </button>
+
+        <nav>
+            <ul class="sidebar-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="sevices.html" class="active">Services</a></li>
+                <li><a href="contactus.html">Contact</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main>
+        <section class="services-hero">
+            <div class="services-hero-content">
+                <span>Tailored Solutions</span>
+                <h1>Our Specialized Services</h1>
+                <p>The tailored solution are the given services of the area in your nearby places </p>
+            </div>
+        </section>
+
+        <section class="services-grid-section">
+            <div class="dist-content" style="text-align: center; opacity: 0; transform: translateY(20px);"
+                id="triggerIntro">
+                <span class="section-tag">Expertise & Quality</span>
+                <h2 class="section-title">What We Offer</h2>
+                <p>We deliver exceptional results through meticulous attention to detail and a commitment to innovation.
+                </p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card reveal-item">
+                    <div class="service-icon-wrapper">
+                        <i data-lucide="sparkles" style="width: 35px; height: 35px;"></i>
+                    </div>
+                    <h3>Household Care</h3>
+                    <p>Advanced cleaning solutions for floors, kitchens, and bathrooms, ensuring a pristine living
+                        environment.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card reveal-item">
+                    <div class="service-icon-wrapper">
+                        <i data-lucide="shirt" style="width: 35px; height: 35px;"></i>
+                    </div>
+                    <h3>Fabric Expert</h3>
+                    <p>Sophisticated laundry detergents and fabric care for long-lasting freshness and garment
+                        longevity.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card reveal-item">
+                    <div class="service-icon-wrapper">
+                        <i data-lucide="shield-check" style="width: 35px; height: 35px;"></i>
+                    </div>
+                    <h3>Hygiene Solutions</h3>
+                    <p>High-efficacy disinfectants and sanitization protocols to eliminate germs and protect your
+                        family.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card reveal-item">
+                    <div class="service-icon-wrapper">
+                        <i data-lucide="factory" style="width: 35px; height: 35px;"></i>
+                    </div>
+                    <h3>Contract Mfg.</h3>
+                    <p>Strategic manufacturing partnerships for established brands, leveraging our state-of-the-art
+                        facilities.</p>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-card reveal-item">
+                    <div class="service-icon-wrapper">
+                        <i data-lucide="test-tube-2" style="width: 35px; height: 35px;"></i>
+                    </div>
+                    <h3>R&D Services</h3>
+                    <p>Innovative formulations and chemical engineering for the next generation of consumer care
+                        products.</p>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="service-card reveal-item">
+                    <div class="service-icon-wrapper">
+                        <i data-lucide="truck" style="width: 35px; height: 35px;"></i>
+                    </div>
+                    <h3>Distribution</h3>
+                    <p>Robust supply chain network and logistics management across the region for seamless delivery.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="distribution-section">
+            <div class="container">
+                <div class="dist-content">
+                    <span class="section-tag">Wide Network</span>
+                    <h2 class="section-title">Strategic Reach</h2>
+                    <p>With distribution hubs placed strategically, we ensure our products reach every household across
+                        the territory with efficiency and speed.</p>
+                    <div
+                        style="margin-top: 40px; border-radius: 30px; overflow: hidden; height: 400px; box-shadow: 0 20px 50px rgba(0,0,0,0.1);">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80"
+                            alt="Logistics" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <!-- Column 1: Info -->
+                <div class="footer-col footer-info">
+                    <div class="footer-logo">
+                        <img src="imges/glem logo.png" alt="Glem House Logo">
+                    </div>
+                    <ul class="contact-list">
+                        <li>
+                            <i data-lucide="map-pin"></i>
+                            <span>2357 Gordon Street, CA</span>
+                        </li>
+                        <li>
+                            <i data-lucide="phone"></i>
+                            <span>05223662432 </span>
+                        </li>
+                        <li>
+                            <i data-lucide="mail"></i>
+                            <span>hr@glemhouse.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: About Us -->
+                <div class="footer-col">
+                    <h3 class="footer-title">About us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Our story</a></li>
+                        <li><a href="#">Our team</a></li>
+                        <li><a href="#">Designers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Customer Service -->
+                <div class="footer-col">
+                    <h3 class="footer-title">Customer service</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#hot">Products</a></li>
+                        <li><a href="contactus.html">Contacts</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Support -->
+                <div class="footer-col">
+                    <h3 class="footer-title">Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">FAQ's</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Return</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-middle">
+                <div class="footer-col newsletter-col">
+                    <h3 class="footer-title">Newsletters</h3>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" aria-label="Email address">
+                        <button type="submit">Submit</button>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+                        <a href="#" aria-label="Pinterest"><i data-lucide="target"></i></a>
+                        <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>Copyright © 2024 GLEM HOUSE CONSUMER CARE. All Rights Reserved.</p>
+                </div>
+                <div class="payment-methods">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Visa_2021.svg" alt="Visa">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple Pay">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Reveal animation with Intersection Observer
+        const observerOptions = {
+            threshold: 0.15
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-item').forEach(el => revealObserver.observe(el));
+
+        // Single trigger for introduction
+        const intro = document.getElementById('triggerIntro');
+        if (intro) {
+            const introObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    entries[0].target.style.opacity = "1";
+                    entries[0].target.style.transform = "translateY(0)";
+                    entries[0].target.style.transition = "all 0.8s ease-out";
+                }
+            }, { threshold: 0.5 });
+            introObserver.observe(intro);
+        }
+    </script>
+</body>
+
+</html>
