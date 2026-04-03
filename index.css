@@ -2893,12 +2893,14 @@ body.menu-active .menu-toggle span:nth-child(3) {
 }
 
 .payment-methods img {
-    height: 14px;
-    /* Same small height for all icons */
+    height: 30px;
     width: auto;
-    filter: none;
-    opacity: 1;
+    object-fit: contain;
     transition: var(--transition);
+}
+
+.payment-methods img[alt="Visa"] {
+    mix-blend-mode: multiply;
 }
 
 .payment-methods img:hover {
