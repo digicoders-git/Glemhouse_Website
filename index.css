@@ -180,11 +180,12 @@ body.menu-active .menu-toggle span:nth-child(3) {
     height: 105px;
     width: auto;
     object-fit: contain;
-    mix-blend-mode: multiply;
+    /* Removed multiply blend mode to keep logo colors crisp and clear */
     /* Enhancing visual crispness */
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
     transition: var(--transition);
+    filter: brightness(1.02) contrast(1.02); /* Subtle boost for clarity */
 }
 
 .logo:hover {
@@ -2771,6 +2772,12 @@ body.menu-active .menu-toggle span:nth-child(3) {
 
 .footer-logo {
     margin-bottom: 25px;
+}
+
+.footer-logo img {
+    height: 70px; /* Reduced size as requested */
+    width: auto;
+    object-fit: contain;
 }
 
 
