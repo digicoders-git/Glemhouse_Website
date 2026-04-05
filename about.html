@@ -7,6 +7,7 @@
     <title>About Us | GLEM HOUSE - Our Story & Values</title>
     <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="index.css">
     <!-- Google Fonts for refined typography -->
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap"
@@ -33,6 +34,7 @@
         }
 
         body {
+            padding-top: 125px;
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-light);
             color: var(--text-dark);
@@ -47,226 +49,25 @@
             padding: 0 5%;
         }
 
-        /* ========== HEADER & NAV (consistent with global site) ========== */
-        header {
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(12px);
-            padding: 0 5%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
 
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            transition: var(--transition);
-        }
-
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-            z-index: 10001;
-            width: 40px;
-            height: 40px;
-            background: #000;
-            border: none;
-            border-radius: 8px;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .menu-toggle span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: #fff;
-            border-radius: 10px;
-            transition: 0.3s cubic-bezier(0.68, -0.6, 0.32, 1.6);
-            position: absolute;
-            left: 8px;
-        }
-
-        .menu-toggle span:nth-child(1) {
-            top: 12px;
-        }
-
-        .menu-toggle span:nth-child(2) {
-            top: 18px;
-            opacity: 1;
-        }
-
-        .menu-toggle span:nth-child(3) {
-            top: 24px;
-        }
-
-        /* Animation to X */
-        body.menu-active .menu-toggle span:nth-child(1) {
-            transform: rotate(45deg);
-            top: 18px;
-        }
-
-        body.menu-active .menu-toggle span:nth-child(2) {
-            opacity: 0;
-            transform: translateX(-10px);
-        }
-
-        body.menu-active .menu-toggle span:nth-child(3) {
-            transform: rotate(-45deg);
-            top: 18px;
-        }
-
-        .logo img {
-            height: 50px;
-            width: auto;
-            display: block;
-        }
-
-        .main-nav {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 42px;
-            list-style: none;
-        }
-
-        .nav-links li a {
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--text-dark);
-            letter-spacing: 0.3px;
-            transition: var(--transition);
-            padding: 28px 0;
-            display: inline-block;
-            position: relative;
-        }
-
-        .nav-links li a::after {
-            content: '';
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background: var(--accent-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links li a:hover::after,
-        .nav-links li a.active::after {
-            width: 100%;
-        }
-
-        .nav-links li a.active {
-            color: var(--accent-color);
-        }
-
-        .header-right-empty {
-            width: 80px;
-        }
-
-        /* overlay & sidebar */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.3s;
-            z-index: 1040;
-        }
-
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -320px;
-            width: 300px;
-            height: 100vh;
-            background: #fff;
-            z-index: 100000;
-            padding: 60px 40px 40px;
-            box-shadow: 20px 0 60px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-            transition: left 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .sidebar.open {
-            left: 0;
-        }
-
-        .sidebar-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #ffffff;
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-            z-index: 10;
-            color: #000;
-            font-size: 24px;
-        }
-
-        .sidebar-close:hover {
-            transform: rotate(90deg);
-            background: #f8f9fa;
-        }
-
-        .sidebar-links {
-            list-style: none;
-            margin-top: 20px;
-        }
-
-        .sidebar-links li {
-            margin-bottom: 24px;
-        }
-
-        .sidebar-links li a {
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            transition: 0.2s;
-        }
-
-        .sidebar-links li a.active {
-            color: var(--accent-color);
+        .sidebar-links a:hover,
+        .sidebar-links a.active {
+            color: #2D3E33;
+            background: rgba(0, 90, 90, 0.03);
+            padding-left: 20px;
         }
 
         @media (max-width: 991px) {
             header {
-                height: 75px;
+                height: 100px;
                 padding: 0 16px;
             }
 
-            .main-nav {
-                display: none;
+            .logo img {
+                height: 75px;
             }
 
+            .main-nav,
             .header-right-empty {
                 display: none;
             }
@@ -284,12 +85,6 @@
 
             .logo {
                 order: 1;
-            }
-        }
-
-        @media (min-width: 992px) {
-            .menu-toggle {
-                display: none;
             }
         }
 
@@ -970,15 +765,16 @@
 
     <header>
         <div class="header-left">
-            <div class="menu-toggle" id="menuToggleBtn">
+            <div class="menu-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             <a href="index.html" class="logo">
-                <img src="imges/glem logo.png" alt="Glem House Logo">
+                <img src="imges/glem logo_no_bg_9hzk4oe4.png" alt="Glem House Logo">
             </a>
         </div>
+
         <nav class="main-nav">
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
@@ -988,14 +784,16 @@
                 <li><a href="contactus.html">Contact</a></li>
             </ul>
         </nav>
+
         <div class="header-right-empty"></div>
     </header>
 
-    <div class="overlay" id="overlay"></div>
-    <aside class="sidebar" id="sidebar">
-        <button class="sidebar-close" id="closeSidebarBtn" aria-label="Close Menu">
+    <div class="overlay"></div>
+    <aside class="sidebar">
+        <button class="sidebar-close" title="Close Menu">
             <i data-lucide="x"></i>
         </button>
+
         <nav>
             <ul class="sidebar-links">
                 <li><a href="index.html">Home</a></li>
@@ -1019,10 +817,10 @@
             </div>
         </section>
 
-        <section class="reveal-section container">
+        <section id="our-story" class="reveal-section container">
             <div class="two-col">
                 <div class="about-text">
-                    <span class="section-tag">✦ OUR JOURNEY</span>
+                    <span class="section-tag">âœ¦ OUR JOURNEY</span>
                     <h2 class="section-title">A Journey of Excellence</h2>
                     <p>To become a trusted and leading household name in the consumer care segment across India by
                         providing superior quality products that ensure a healthy, clean, and fresh living environment
@@ -1037,7 +835,7 @@
             </div>
         </section>
 
-        <section class="reveal-section container">
+        <section id="stats" class="reveal-section container">
             <div class="stats-grid">
                 <div class="stat-item">
                     <h2 class="counter" data-target="1500">0</h2>
@@ -1091,7 +889,7 @@
                     consistent.<br>
                     Consumer-Centric Formulations: Designed for Indian households. Strong Distribution Network &
                     Affordable Pricing: Excellent value for money.</p>
-                <a href="index.html#hot" class="white-btn">Explore Collections →</a>
+                <a href="index.html#hot" class="white-btn">Explore Collections â†’</a>
             </div>
         </section>
     </main>
@@ -1099,19 +897,19 @@
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-top">
-
+                <!-- Column 1: Info -->
                 <div class="footer-col footer-info">
                     <div class="footer-logo">
-                        <img src="imges/glem logo.png" alt="Glem House Logo">
+                        <img src="imges/glem logo_no_bg_9hzk4oe4.png" alt="Glem House Logo">
                     </div>
                     <ul class="contact-list">
                         <li>
                             <i data-lucide="map-pin"></i>
-                            <span>H. No. 1/093, New A, Jiyamau,Hazratganj, Lucknow (UP) – 226001</span>
+                            <span>H. No. 1/093, New A, Jiyamau, Hazratganj, Lucknow (UP) – 226001</span>
                         </li>
                         <li>
                             <i data-lucide="phone"></i>
-                            <span>05223662432 </span>
+                            <span>05223662432</span>
                         </li>
                         <li>
                             <i data-lucide="mail"></i>
@@ -1120,49 +918,43 @@
                     </ul>
                 </div>
 
-
+                <!-- Column 2: About Us -->
                 <div class="footer-col">
                     <h3 class="footer-title">About us</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Our story</a></li>
-                        <li><a href="#">Our team</a></li>
-                        <li><a href="#">Designers</a></li>
+                        <li><a href="about.html#our-story">Our story</a></li>
+                        <li><a href="index.html#testimonials">Our team</a></li>
                     </ul>
                 </div>
 
-
+                <!-- Column 3: Customer Service -->
                 <div class="footer-col">
                     <h3 class="footer-title">Customer service</h3>
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#hot">Products</a></li>
+                        <li><a href="gallery.html">Products</a></li>
                         <li><a href="contactus.html">Contacts</a></li>
                     </ul>
                 </div>
 
-
+                <!-- Column 4: Support -->
                 <div class="footer-col">
                     <h3 class="footer-title">Support</h3>
                     <ul class="footer-links">
-                        <li><a href="#">FAQ's</a></li>
-                        <li><a href="#">Shipping</a></li>
-                        <li><a href="#">Return</a></li>
+                        <li><a href="index.html">Return</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer-middle">
                 <div class="footer-col newsletter-col">
-                    <h3 class="footer-title">Newsletters</h3>
-                    <div class="newsletter-form">
-                        <input type="email" placeholder="Enter your email" aria-label="Email address">
-                        <button type="submit">Submit</button>
-                    </div>
                     <div class="social-links">
-
-                        <a href="#" aria-label="Pinterest"><i data-lucide="target"></i></a>
-
-
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i
+                                data-lucide="facebook"></i></a>
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i
+                                data-lucide="instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i
+                                data-lucide="twitter"></i></a>
                     </div>
                 </div>
             </div>
@@ -1171,46 +963,16 @@
                 <div class="copyright">
                     <p>Copyright © 2026 GLEM HOUSE CONSUMER CARE. All Rights Reserved.</p>
                 </div>
-                <div class="payment-methods">
-                    <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/paypal.svg"
-                        alt="PayPal">
-                    <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/mastercard.svg"
-                        alt="Mastercard">
-                    <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/visa.svg"
-                        alt="Visa">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple Pay">
-                </div>
             </div>
         </div>
     </footer>
 
+    <script src="script.js"></script>
     <script>
         // Reinitialize Lucide icons
-        lucide.createIcons();
-
-        // Sidebar and mobile menu logic
-        const menuToggle = document.getElementById('menuToggleBtn');
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
-        const closeSidebarBtn = document.getElementById('closeSidebarBtn');
-
-        function openSidebar() {
-            sidebar.classList.add('open');
-            document.body.classList.add('menu-active');
-            overlay.style.opacity = '1';
-            overlay.style.visibility = 'visible';
-            document.body.style.overflow = 'hidden';
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
         }
-        function closeSidebar() {
-            sidebar.classList.remove('open');
-            document.body.classList.remove('menu-active');
-            overlay.style.opacity = '0';
-            overlay.style.visibility = 'hidden';
-            document.body.style.overflow = '';
-        }
-        if (menuToggle) menuToggle.addEventListener('click', openSidebar);
-        if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', closeSidebar);
-        if (overlay) overlay.addEventListener('click', closeSidebar);
 
         // Intersection Observer for animations + counters + skill bars
         const observerOptions = { threshold: 0.2 };

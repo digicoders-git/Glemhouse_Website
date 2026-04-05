@@ -9,7 +9,7 @@
     --text-dark: #1A1A1A;
     --bg-light: #F8F9FA;
     --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    --header-height: 80px;
+    --header-height: 125px;
 }
 
 * {
@@ -157,11 +157,13 @@ body.menu-active .menu-toggle span:nth-child(3) {
     transition: var(--transition);
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.active {
     color: var(--primary-color);
 }
 
-.nav-links a:hover::after {
+.nav-links a:hover::after,
+.nav-links a.active::after {
     width: 100%;
 }
 
@@ -175,12 +177,13 @@ body.menu-active .menu-toggle span:nth-child(3) {
 }
 
 .logo img {
-    height: 65px;
-    /* Restored slight prominence */
+    height: 105px;
     width: auto;
     object-fit: contain;
     mix-blend-mode: multiply;
-    /* Removes white background edges */
+    /* Enhancing visual crispness */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
     transition: var(--transition);
 }
 
@@ -199,14 +202,14 @@ body.menu-active .menu-toggle span:nth-child(3) {
 }
 
 .sidebar-logo img {
-    height: 80px;
+    height: 100px;
     width: auto;
     object-fit: contain;
     mix-blend-mode: multiply;
 }
 
 .footer-logo img {
-    height: 75px;
+    height: 100px;
     width: auto;
     object-fit: contain;
 }
@@ -409,7 +412,8 @@ body.menu-active .menu-toggle span:nth-child(3) {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 100%);
+    background: rgba(0, 0, 0, 0.55);
+    /* Darker and more consistent to improve text contrast */
     z-index: 0;
 }
 
@@ -430,6 +434,8 @@ body.menu-active .menu-toggle span:nth-child(3) {
     letter-spacing: 5px;
     color: var(--accent-color);
     margin-bottom: 20px;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    /* Stronger readability */
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.8s ease-out;
@@ -452,7 +458,8 @@ body.menu-active .menu-toggle span:nth-child(3) {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    /* Enhanced contrast */
 }
 
 .slide.active .stylish-text {
@@ -585,7 +592,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
-    background: #fff;
+    background: var(--bg-light);
 }
 
 .category-card {
@@ -605,8 +612,9 @@ body.menu-active .menu-toggle span:nth-child(3) {
 }
 
 .category-card.luxury-dark {
-    background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
-    color: white;
+    background: linear-gradient(135deg, #f9fdfc 0%, #e8f4f1 100%);
+    /* Slight green tint for fresh theme */
+    color: var(--text-dark);
 }
 
 .category-tag {
@@ -664,7 +672,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
 }
 
 .luxury-dark .btn-small {
-    background: white;
+    background: var(--bg-light);
     color: #1a1a1a;
 }
 
@@ -690,7 +698,9 @@ body.menu-active .menu-toggle span:nth-child(3) {
     background-position: center bottom;
     transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
     z-index: 1;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
+    mix-blend-mode: multiply;
+    -webkit-mask-image: radial-gradient(circle at center, black 50%, transparent 95%);
+    mask-image: radial-gradient(circle at center, black 50%, transparent 95%);
 }
 
 .category-card:hover .category-img {
@@ -707,7 +717,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
 }
 
 .feature-box {
-    background: white;
+    background: transparent;
     padding: 30px 20px;
     display: flex;
     flex-direction: column;
@@ -762,7 +772,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
 /* New Arrivals Section */
 .new-arrivals {
     padding: 40px 5% 80px;
-    background: white;
+    background: var(--bg-light);
 }
 
 .section-header {
@@ -785,7 +795,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
 .arrival-banner.product-focus {
     height: 100%;
     min-height: 500px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background: var(--bg-light);
     border-radius: 15px;
     position: relative;
     overflow: hidden;
@@ -804,7 +814,6 @@ body.menu-active .menu-toggle span:nth-child(3) {
     align-items: center;
     justify-content: center;
     margin-bottom: 25px;
-    filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.12));
     perspective: 1000px;
 }
 
@@ -943,7 +952,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
 
 .product-img-wrapper {
     position: relative;
-    background: #f8f8f8;
+    background: transparent;
     aspect-ratio: 1/1;
     display: flex;
     align-items: center;
@@ -961,9 +970,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
     /* Removes white background */
 }
 
-.upright-pouch {
-    transform: rotate(-90deg) scale(1.2);
-}
+/* .upright-pouch - no transform needed, bgimg PNGs are already correctly oriented */
 
 .product-actions {
     position: absolute;
@@ -986,7 +993,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
 }
 
 .product-card:hover .product-img-wrapper img.upright-pouch {
-    transform: rotate(-90deg) scale(1.3);
+    transform: scale(1.1);
 }
 
 .action-btn {
@@ -1080,6 +1087,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 40px;
+    background: var(--bg-light);
 }
 
 .promo-banner {
@@ -1100,8 +1108,9 @@ body.menu-active .menu-toggle span:nth-child(3) {
 }
 
 .promo-banner.dark-glass {
-    background: linear-gradient(135deg, #121212 0%, #2a2a2a 100%);
-    color: white;
+    background: linear-gradient(135deg, #fdfaf0 0%, #f7f1d5 100%);
+    /* Slight gold/yellow tint for savings theme */
+    color: var(--text-dark);
 }
 
 .promo-tag {
@@ -1130,7 +1139,9 @@ body.menu-active .menu-toggle span:nth-child(3) {
     background-position: bottom right;
     transition: all 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
     z-index: 1;
-    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.1));
+    mix-blend-mode: multiply;
+    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+    mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
 }
 
 .promo-banner:hover .promo-banner-bg {
@@ -1233,7 +1244,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
 /* Our Products Section - Premium 3-Column Grid */
 .our-products {
     padding: 25px 5% 120px;
-    background: #fff;
+    background: var(--bg-light);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1304,7 +1315,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
 }
 
 .our-products .product-card {
-    background: #fff;
+    background: transparent;
     border-radius: 12px;
     padding: 9px;
     transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -1319,7 +1330,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
     transform: scale(1.03);
     box-shadow: 0 40px 80px rgba(0, 0, 0, 0.12);
     border-color: var(--primary-color);
-    background: #fff;
+    background: transparent;
 }
 
 /* Tab Switching Support */
@@ -1349,7 +1360,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
     width: 100%;
     height: 300px;
     /* Reduced for better fit */
-    background: #fcfcfc;
+    background: transparent;
     border-radius: 10px;
     margin-bottom: 20px;
     display: flex;
@@ -1364,6 +1375,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
     max-height: 90%;
     object-fit: contain;
     transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    mix-blend-mode: multiply;
 }
 
 .our-products .product-img-wrapper .back-img {
@@ -1500,7 +1512,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
 .flash-deals {
     padding: 80px 5% 40px;
     /* Reduced bottom padding */
-    background: white;
+    background: var(--bg-light);
     position: relative;
 }
 
@@ -1525,7 +1537,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
     height: 45px;
     border-radius: 50%;
     border: 2px solid #e0e0e0;
-    background: white;
+    background: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1558,7 +1570,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
 }
 
 .flash-deal-card {
-    background: #f8f8f8;
+    background: transparent;
     border-radius: 12px;
     overflow: hidden;
     transition: var(--transition);
@@ -1569,7 +1581,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
 .flash-deal-card:hover {
     transform: translateY(-15px);
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-    background: white;
+    background: transparent;
 }
 
 .flash-badge {
@@ -1593,7 +1605,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: white;
+    background: transparent;
     padding: 20px;
 }
 
@@ -1602,6 +1614,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
     max-height: 100%;
     object-fit: contain;
     transition: var(--transition);
+    mix-blend-mode: multiply;
 }
 
 .flash-deal-card:hover .flash-product-img img {
@@ -1614,7 +1627,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
     justify-content: center;
     gap: 15px;
     padding: 20px 15px;
-    background: white;
+    background: transparent;
     border-top: 1px solid #f0f0f0;
 }
 
@@ -1861,6 +1874,8 @@ body.menu-active .menu-toggle span:nth-child(3) {
     max-height: 450px;
     height: auto;
     object-fit: contain;
+    mix-blend-mode: multiply;
+    /* removes white background */
     filter: drop-shadow(0 0 40px rgba(0, 255, 255, 0.2));
     animation: floatImage 4s infinite ease-in-out;
     transition: transform 0.6s cubic-bezier(0.2, 0, 0.2, 1);
@@ -2154,7 +2169,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
     display: grid;
     grid-template-columns: 0.8fr 1.5fr;
     gap: 0;
-    background: white;
+    background: transparent;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 15px 45px rgba(0, 0, 0, 0.05);
@@ -2230,13 +2245,15 @@ body.menu-active .menu-toggle span:nth-child(3) {
 }
 
 .news-image img.rotated-news-img {
-    transform: rotate(-90deg) scale(1.1);
-    /* Smaller image scale */
+    transform: rotate(0deg) scale(1);
     object-fit: contain;
+    mix-blend-mode: multiply;
+    /* removes white background */
 }
 
 .news-content:hover .news-image img.rotated-news-img {
-    transform: rotate(-90deg) scale(1.2);
+    transform: scale(1.05);
+    /* gentle zoom on hover, no rotation */
 }
 
 .news-details {
@@ -3243,10 +3260,9 @@ body.menu-active .menu-toggle span:nth-child(3) {
 
 .concentrate-card {
     display: flex;
-    background: white;
+    background: transparent;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     transition: var(--transition);
     border: 1px solid rgba(0, 0, 0, 0.03);
 }
@@ -3262,7 +3278,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #fcfcfc;
+    background: transparent;
     padding: 20px;
 }
 
@@ -3271,6 +3287,7 @@ body.menu-active .menu-toggle span:nth-child(3) {
     max-height: 350px;
     object-fit: contain;
     transition: transform 0.6s ease;
+    mix-blend-mode: multiply;
 }
 
 .concentrate-card:hover .concentrate-img img {
